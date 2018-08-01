@@ -3,6 +3,14 @@ import unittest
 import bootrecord as br
 
 
+class TableEntryTest(unittest.TestCase):
+
+    def test_calculate_cylinder(self):
+        self.assertEqual(0, br.TableEntry(['01', '01', '00']).cylinder)
+        self.assertEqual(51, br.TableEntry(['1f', '3f', '33']).cylinder)
+        self.assertEqual(1023, br.TableEntry(['fe', 'ff', 'ff']).cylinder)
+
+
 class PartitionTest(unittest.TestCase):
 
     bootable = '80 01 01 00 0B 1F 3F 33 3F 00 00 00 41 99 01 00'.split()
